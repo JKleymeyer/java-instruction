@@ -22,7 +22,7 @@ public class TipCalculator {
 			
 			//Collect Cost of Meal
 			System.out.print("Cost of Meal: ");
-			double meal = sc.nextDouble();
+			BigDecimal meal = sc.nextBigDecimal();
 			System.out.println();
 			
 			//Number Formatting
@@ -31,10 +31,12 @@ public class TipCalculator {
 			cf.setMaximumFractionDigits(2);
     		pf.setMaximumFractionDigits(2);
     		
-    		for (double tip = .15; tip <= .25; tip +=.05) {
+    		for (double t = .15; t <= .25; t +=.05) {
+    			BigDecimal tip = new BigDecimal(t);
+    			
     			//Buisness Logic
-    			double tAmount = meal * tip;
-    			double fAmount = tAmount + meal;
+    			BigDecimal tAmount = meal.multiply(tip);
+    			BigDecimal fAmount = tAmount.add(meal);
     			//Display
     			System.out.println(pf.format(tip));
     			System.out.println("Tip Amount: " +cf.format(tAmount));
