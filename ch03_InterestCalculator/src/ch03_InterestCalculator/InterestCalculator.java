@@ -8,13 +8,7 @@ import java.util.Scanner;
 public class InterestCalculator {
 
 	public static void main(String[] args) {
-		// TODO Welcome
-		//Input needed: Loan Amount and Interest Rate - Big Decimal
-		//Buisness Logic
-		//Calculate Interest
-		//Goodbye
-		//Include loop
-		
+			
 		//Add Scanner and Choice Variable
 		Scanner sc = new Scanner(System.in);
 		String choice = "y";
@@ -46,8 +40,8 @@ public class InterestCalculator {
     		System.out.println("Interest Rate: " +pf.format(rate));
 
     		//Calculate Interest Rate
-    		BigDecimal interest = loan.divide(rate, 2, RoundingMode.HALF_UP);
-    		System.out.println("Interest: " +pf.format(interest));
+    		BigDecimal interest = loan.multiply(rate);
+    		System.out.println("Interest: " +cf.format(interest));
     		
         	
         	
