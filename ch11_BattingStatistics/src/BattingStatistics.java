@@ -55,6 +55,8 @@ public class BattingStatistics {
 			System.out.println();
 
 		}
+		
 		System.out.println("Goodbye!");
+		
 	}
 }
