@@ -1,22 +1,28 @@
 package buisness;
 
-import java.time.LocalDate;
-
 public class Actor {
 
 	private int id;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private LocalDate birthDate;
+	private String birthDate;
 	
 	public Actor() {
 		super();
 	}
 
-	public Actor(int id, String firstName, String lastName, String gender, LocalDate birthDate) {
+	public Actor(int id, String firstName, String lastName, String gender, String birthDate) {
 		super();
 		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.gender = gender;
+		this.birthDate = birthDate;
+	}
+
+	public Actor(String firstName, String lastName, String gender, String birthDate) {
+		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
@@ -55,11 +61,11 @@ public class Actor {
 		this.gender = gender;
 	}
 
-	public LocalDate getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(LocalDate birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

@@ -9,7 +9,7 @@ import db.MovieDB;
 import util.Console;
 
 public class BmdbApp {
-	//create moviedb instance
+	//create movie and actor db instance
 	private static MovieDB movieDB = new MovieDB();
 	private static ActorDB actorDB = new ActorDB();
 	
@@ -55,6 +55,23 @@ public class BmdbApp {
 				
 				break;
 			case 4:
+				//add Actor
+				System.out.println("\nAdd an Actor");
+				String f = Console.getString("First name: ");
+				String l = Console.getString("Last Name: ");
+				String g = Console.getString("Gender: ");
+				String date = Console.getString("Birthday (YYYY-MM-DD): ");
+				//Create movie instance
+				Actor a = new Actor(f,l,g,date);
+				//Call addMovie method and add inputs
+				int rc2 = actorDB.add(a);
+				if (rc2 == 1) {
+					System.out.println("Movie added successfully");
+				} else {
+					System.out.println("Error!");
+				}
+				break;
+			case 5:
 				//update movie
 				m = getMovie();
 				if (m!=null) {
@@ -71,7 +88,24 @@ public class BmdbApp {
 					System.out.println("Error....movie id doesn't exist.");
 				}
 				break;
-			case 5:
+			case 6:
+				//update actor
+				a = getActor();
+				if (a!=null) {
+					String name = Console.getString("New First name: ");
+					a.setFirstName(name);
+					rc2 = actorDB.update(a);
+					if (rc2==1) {
+						System.out.println("Movie update successful");
+					} else {
+						System.out.println("Error updating movie year.");
+					}
+				}
+				else {
+					System.out.println("Error....movie id doesn't exist.");
+				}
+				break;
+			case 7:
 				//delete movie
 				m = getMovie();
 				if (m!=null) {
@@ -86,7 +120,22 @@ public class BmdbApp {
 					System.out.println("Error....movie id doesn't exist.");
 				}
 				break;
-			case 6:
+			case 8:
+				//delete actor
+				a = getActor();
+				if (a!=null) {
+					rc = actorDB.delete(a);
+					if (rc==1) {
+						System.out.println("Deleted successful");
+					} else {
+						System.out.println("Error deleting actor.");
+					}
+				}
+				else {
+					System.out.println("Error....actor id doesn't exist.");
+				}
+				break;
+			case 9:
 				//get movie
 				m = getMovie();
 				if (m!=null) {
@@ -96,6 +145,15 @@ public class BmdbApp {
 					System.out.println("Error....movie id doesn't exist.");
 				}
 				break;
+			case 10:
+				//Get Actor
+				a = getActor();
+				if (a!=null) {
+				System.out.println("Actor: ");
+				System.out.println(a);
+				} else {
+					System.out.println("Error....actor id doesn't exist.");
+				}
 			case 99:
 				break;
 			default:
@@ -114,14 +172,24 @@ public class BmdbApp {
 		return m;
 	}
 	
+	private static Actor getActor() {
+		int id = Console.getInt("Id: ", 0, Integer.MAX_VALUE);
+		Actor a = actorDB.get(id);
+		return a;
+	}
+	
 	private static String getMenu() {
 	String menu = "\nMenu\n"
 				 + "1 - List Movies\n"
 				 + "2 - List Actors\n"
 				 + "3 - Add Movie\n"
-				 + "4 - Update Movie\n"
-				 + "5 - Delete Movie\n"
-				 + "6 - Get Movie\n"
+				 + "4 - Add Actor\n"
+				 + "5 - Update Movie\n"
+				 + "6 - Update Actor\n"
+				 + "7 - Delete Movie\n"
+				 + "8 - Delete Actor\n"
+				 + "9 - Get Movie\n"
+				 + "10 - Get Actor\n"
 				 + "99- Exit\n"
 				 + "Command:";
 	return menu;
